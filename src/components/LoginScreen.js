@@ -23,14 +23,15 @@ export default function LoginScreen() {
 
 
 const Wrapper = styled.div`
+    height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     img{
         width: 180px;
         height: 178.38px;
         margin-bottom: 35px;
+        margin-top: 70px;
     }
     
 `;
