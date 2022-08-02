@@ -137,18 +137,23 @@ table {
 }
 /* ____________________________________________________Meu Style global________________________________________________________________________________________ */
 
-    body {
-        background-color: #ffffff;
-		font-family: 'Roboto', sans-serif;
+    *{
+        font-family: 'Playball', cursive;
+        font-family: 'Lexend Deca', sans-serif;
+
+        --light-blue: #52B6FF;
+        --heavy-blue: #126BA5;
+        --light-text: #DBDBDB;
+        --border-color: #D4D4D4;
+
+		color: #666666;
 		font-weight: 400;
-		color: #293845;
-		
+
     }
 
-	a {
-        text-decoration: none;
-	}
-
+    body {
+        background-color: #FFFFFF;
+    }
 
 `;
 
