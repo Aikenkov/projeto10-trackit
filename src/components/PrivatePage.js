@@ -1,6 +1,11 @@
+import { useContext } from "react";
+import UserContext from "../contexts/UserContext";
 
+
+
+/* 
 const SEC = 1000;
-const MIN_5 = SEC * 60 * 5;
+const MIN_5 = SEC * 60 * 5; */
 
 function renderError() {
     localStorage.clear("token");
@@ -8,6 +13,9 @@ function renderError() {
 }
 
 export default function PrivatePage({ children }) {
+    const [teste, setTeste] = useContext(UserContext)
+
+    console.log(teste)
 
     const auth = localStorage.getItem("token");
 
