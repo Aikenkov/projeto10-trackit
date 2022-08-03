@@ -4,7 +4,7 @@ const baseURL = 'https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/';
 
 
 function createHeaders() {
-    const auth = localStorage.getItem("trackit");
+    const auth = localStorage.getItem("token");
     const config = {
         headers: {
             Authorization: `Bearer ${auth.token}`
@@ -19,10 +19,14 @@ function makeRegister(body) {
 }
 
 function makeLogin(body) {
-    const config = createHeaders();
     const promise = axios.post(`${baseURL}auth/login`, body)
     return promise
 }
 
+function getHabits(body) {
+    const config = createHeaders();
+    const promise = axios.post(`${baseURL}/habits`, body, config);
+    return promise
+}
 
-export { makeLogin, makeRegister };
+export { makeLogin, makeRegister, getHabits };

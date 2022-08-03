@@ -26,10 +26,12 @@ export default function RegistrationScreen() {
     function Register(e) {
         e.preventDefault();
         const body = {
-            ...form,
+            ...form
         }
 
-        makeRegister(body).catch(err => { alert("Algo está errado aí") }).then(res => { navigate("/") })
+        makeRegister(body)
+            .catch(err => { alert("Algo está errado aí") })
+            .then(res => { navigate("/") })
 
     }
 
@@ -70,12 +72,13 @@ export default function RegistrationScreen() {
                     />
 
                     <button>Cadastrar</button>
-
+                    <Link to="/">
+                        Já tem uma conta? Faça login!
+                    </Link>
                 </FormStyle>
+
             </form>
-            <Link to="/">
-                Já tem uma conta? Faça login!
-            </Link>
+
         </Wrapper>
     )
 }
