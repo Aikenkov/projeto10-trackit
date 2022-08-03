@@ -11,7 +11,6 @@ export default function PrivatePage({ children }) {
 
     const auth = localStorage.getItem("token");
 
-    console.log(auth)
 
     /*   if (!auth) {
           return renderError();

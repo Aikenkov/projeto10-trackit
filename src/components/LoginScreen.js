@@ -4,6 +4,7 @@ import { useState } from "react";
 import logo from "../assets/logo.png"
 import FormStyle from "../styles/FormStyle"
 import { makeLogin } from "../services/trackit";
+import ButtonContent from "../styles/ButtonContent";
 
 
 export default function LoginScreen() {
@@ -13,6 +14,8 @@ export default function LoginScreen() {
         image: "",
         password: "",
     })
+    const [loading, setLoading] = useState('false')
+
     const navigate = useNavigate();
 
     function handleForm(e) {
@@ -23,6 +26,7 @@ export default function LoginScreen() {
     }
 
     function login(e) {
+        setLoading('true');
         e.preventDefault();
         const body = {
             email: "fabio.rod@gmail.com",
@@ -30,11 +34,12 @@ export default function LoginScreen() {
         }
 
         makeLogin(body)
+            .catch(() => { console.log('deu errado'); setLoading('false') })
             .then(res => {
                 localStorage.setItem("token", res.data.token);
-                navigate("/habitos");
+                navigate("/hoje");
             })
-            .catch(() => { console.log('deu errado') })
+
     }
 
 
@@ -42,7 +47,8 @@ export default function LoginScreen() {
         <Wrapper>
             <img src={logo} alt="logo" />
             <form onSubmit={login}>
-                <FormStyle>
+                <FormStyle loading={loading}>
+                    <div></div>
                     <input
                         placeholder="email"
                         type="email"
@@ -57,7 +63,7 @@ export default function LoginScreen() {
                         onChange={handleForm}
                         value={form.password}
                     />
-                    <button>Entrar</button>
+                    <button><ButtonContent loading={loading} text="Entrar" /></button>
                     <Link to="/cadastro">
                         Não tem uma conta? Cadastre-se!
                     </Link>

@@ -4,6 +4,7 @@ import { useState } from "react"
 import logo from "../assets/logo.png"
 import FormStyle from "../styles/FormStyle"
 import { makeRegister } from "../services/trackit"
+import ButtonContent from "../styles/ButtonContent";
 
 
 export default function RegistrationScreen() {
@@ -13,6 +14,7 @@ export default function RegistrationScreen() {
         image: "",
         password: "",
     })
+    const [loading, setLoading] = useState('false')
 
     const navigate = useNavigate();
 
@@ -24,14 +26,16 @@ export default function RegistrationScreen() {
     }
 
     function Register(e) {
+        setLoading('true')
         e.preventDefault();
         const body = {
             ...form
         }
 
         makeRegister(body)
-            .catch(err => { alert("Algo está errado aí") })
-            .then(res => { navigate("/") })
+            .then(() => { navigate("/") })
+            .catch(() => { alert("Algo está errado aí"); setLoading('false') })
+
 
     }
 
@@ -41,7 +45,8 @@ export default function RegistrationScreen() {
         <Wrapper>
             <img src={logo} alt="logo" />
             <form onSubmit={Register}>
-                <FormStyle >
+                <FormStyle loading={loading}>
+                    <div></div>
                     <input
                         placeholder="email"
                         type="email"
@@ -71,7 +76,7 @@ export default function RegistrationScreen() {
                         value={form.image}
                     />
 
-                    <button>Cadastrar</button>
+                    <button ><ButtonContent loading={loading} text="Cadastrar" /></button>
                     <Link to="/">
                         Já tem uma conta? Faça login!
                     </Link>

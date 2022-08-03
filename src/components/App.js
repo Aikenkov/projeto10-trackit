@@ -16,7 +16,7 @@ export default function App() {
                 <Routes>
                     <Route path="/" element={< LoginScreen />} />
                     <Route path="/cadastro" element={< RegistrationScreen />} />
-                    <Route path="/habitos" element={
+                    <Route path="/hoje" element={
                         <PrivatePage>
                             <HabitsPage />
                         </PrivatePage>
