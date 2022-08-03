@@ -152,7 +152,7 @@ table {
     }
 
     body {
-        background-color: #FFFFFF;
+        background-color: #f2f2f2;
     }
 
 `;

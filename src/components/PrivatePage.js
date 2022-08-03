@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import UserContext from "../contexts/UserContext";
+import Footer from "./Footer";
 import Header from "./Header";
 
 
@@ -33,6 +34,7 @@ export default function PrivatePage({ children }) {
             <>
                 <Header img={userImage} />
                 {children}
+                <Footer />
             </>
         );
     } else {
