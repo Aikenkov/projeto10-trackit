@@ -1,13 +1,13 @@
 import styled from "styled-components"
 
-export default function Form({ children }) {
+export default function FormStyle({ children }) {
     return (
-        <FormStyle>{children}</FormStyle>
+        <Wrapper>{children}</Wrapper>
     )
 }
 
 
-const FormStyle = styled.form`
+const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -35,6 +35,7 @@ const FormStyle = styled.form`
         width: 85%;
         height: 45px;
         border-radius: 5px;
+        cursor: pointer;
     }
 
     a{

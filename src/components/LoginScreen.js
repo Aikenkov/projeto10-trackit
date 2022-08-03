@@ -1,21 +1,37 @@
 import styled from "styled-components"
 import { Link } from "react-router-dom";
 import logo from "../assets/logo.png"
-import Form from "../styles/Form";
+import FormStyle from "../styles/FormStyle"
+import { makeLogin } from "../services/trackit";
 
 
 export default function LoginScreen() {
+
+    function login(e) {
+        e.preventDefault();
+        const body = {
+            email: "fabio.rod@gmail.com",
+            password: "31071999",
+        }
+        const promise = makeLogin(body);
+
+        promise.then(console.log('deu certo')).catch(console.log('deu errado'))
+    }
+
+
     return (
         <Wrapper>
             <img src={logo} alt="logo" />
-            <Form>
-                <input placeholder="email" type="email"></input>
-                <input placeholder="senha" type="password"></input>
-                <button>Entrar</button>
-                <Link to="/cadastro">
-                    Não tem uma conta? Cadastre-se!
-                </Link>
-            </Form>
+            <form onSubmit={login}>
+                <FormStyle>
+                    <input placeholder="email" type="email" />
+                    <input placeholder="senha" type="password" />
+                    <button>Entrar</button>
+                    <Link to="/cadastro">
+                        Não tem uma conta? Cadastre-se!
+                    </Link>
+                </FormStyle>
+            </form>
 
         </Wrapper>
     )
