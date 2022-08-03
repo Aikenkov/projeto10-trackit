@@ -5,7 +5,8 @@ import logo from "../assets/logo.png"
 import FormStyle from "../styles/FormStyle"
 import { makeLogin } from "../services/trackit";
 import ButtonContent from "../styles/ButtonContent";
-
+import { useContext } from "react";
+import UserContext from "../contexts/UserContext";
 
 export default function LoginScreen() {
     const [form, setForm] = useState({
@@ -14,6 +15,8 @@ export default function LoginScreen() {
         image: "",
         password: "",
     })
+
+    const { setUserImage } = useContext(UserContext)
     const [loading, setLoading] = useState('false')
 
     const navigate = useNavigate();
@@ -38,6 +41,7 @@ export default function LoginScreen() {
             .then(res => {
                 localStorage.setItem("token", res.data.token);
                 navigate("/hoje");
+                setUserImage(res.data.image)
             })
 
     }

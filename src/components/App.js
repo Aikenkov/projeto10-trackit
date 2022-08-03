@@ -11,25 +11,24 @@ import { useState } from "react";
 
 
 export default function App() {
-    const [teste, setTeste] = useState("teste")
+    const [userImage, setUserImage] = useState("teste")
 
     return (
         <>
             <GlobalStyle />
-            <BrowserRouter>
-                <Routes>
-                    <Route path="/" element={< LoginScreen />} />
-                    <Route path="/cadastro" element={< RegistrationScreen />} />
-
-                    <Route path="/hoje" element={
-                        <UserContext.Provider value={{ teste, setTeste }}>
+            <UserContext.Provider value={{ userImage, setUserImage }}>
+                <BrowserRouter>
+                    <Routes>
+                        <Route path="/" element={< LoginScreen />} />
+                        <Route path="/cadastro" element={< RegistrationScreen />} />
+                        <Route path="/hoje" element={
                             <PrivatePage>
                                 <HabitsPage />
                             </PrivatePage>
-                        </UserContext.Provider>
-                    } />
-                </Routes>
-            </BrowserRouter>
+                        } />
+                    </Routes>
+                </BrowserRouter>
+            </UserContext.Provider>
         </>
 
     )

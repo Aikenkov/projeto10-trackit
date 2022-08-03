@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import UserContext from "../contexts/UserContext";
+import Header from "./Header";
 
 
 
@@ -13,9 +14,9 @@ function renderError() {
 }
 
 export default function PrivatePage({ children }) {
-    const [teste, setTeste] = useContext(UserContext)
+    const { userImage } = useContext(UserContext)
 
-    console.log(teste)
+    console.log(userImage)
 
     const auth = localStorage.getItem("token");
 
@@ -30,6 +31,7 @@ export default function PrivatePage({ children }) {
     if (auth) {
         return (
             <>
+                <Header img={userImage} />
                 {children}
             </>
         );
