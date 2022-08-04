@@ -141,6 +141,7 @@ table {
         font-family: 'Playball', cursive;
         font-family: 'Lexend Deca', sans-serif;
 
+       
         --light-blue: #52B6FF;
         --heavy-blue: #126BA5;
         --light-text: #DBDBDB;
@@ -153,6 +154,7 @@ table {
 
     body {
         background-color: #f2f2f2;
+        font-family: Lexend Deca;
     }
 
 `;

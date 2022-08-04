@@ -1,46 +1,25 @@
 import { useState } from "react"
 import styled from "styled-components"
+import Habits from "./Habits"
+import NewHabit from "./NewHabit"
 
 
 export default function HabitsPage() {
-    const [add, setAdd] = useState(true)
+    const [add, setAdd] = useState(false)
     return (
         <Wrapper>
             <AddHabit>
                 <h1>Meus hábitos</h1>
                 <button onClick={() => {
-                    setAdd(!add);
+                    setAdd(true);
                 }}>+</button>
             </AddHabit>
-            <NewHabit add={add}>
-                <input></input>
-                <input></input>
-                <input></input>
-
-
-            </NewHabit>
+            <NewHabit add={add} setAdd={setAdd} />
+            <Habits />
         </Wrapper>
     )
 }
 
-const NewHabit = styled.div`
-box-sizing: border-box;
-    width: 100%;
-    ${(props) => {
-        if (props.add) {
-            return `opacity: 1; height: 180px;  padding: 18px 17px 15px;`
-        } else {
-
-            return ` opacity: 0; height: 0px; padding: 0px; visibility: hidden;`
-        }
-    }}
-
-    background-color: white;
-    transition: all ease-in 0.2s;
-    transition: visibility ease-in 0.3;
-    border-radius: 5px;
-    
-`;
 
 const Wrapper = styled.div`
     display: flex;
@@ -53,7 +32,7 @@ const AddHabit = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 22px;
 
     h1{
         font-family: Lexend Deca;
