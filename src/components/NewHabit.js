@@ -1,9 +1,11 @@
 import styled from "styled-components"
 import { days } from "../services/trackit";
 import Day from "./Day";
-
+import { useContext } from "react";
+import UserContext from "../contexts/UserContext";
 
 export default function NewHabit({ add, setAdd }) {
+    const { chosenDays, setChosenDays } = useContext(UserContext)
     return (
         <Wrapper add={add}>
             <div>
@@ -15,7 +17,7 @@ export default function NewHabit({ add, setAdd }) {
                         return (
                             <Day
                                 key={index}
-
+                                index={index}
                             >{item}
                             </Day>)
                     })}
@@ -36,7 +38,7 @@ const Choice = styled.div`
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    
+
     h2{
         font-family: Lexend Deca;
         color: var(--light-blue);

@@ -11,12 +11,15 @@ import { useState } from "react";
 
 
 export default function App() {
-    const [userImage, setUserImage] = useState("teste")
+    const [chosenDays, setChosenDays] = useState([])
 
     return (
         <>
             <GlobalStyle />
-            <UserContext.Provider value={{ userImage, setUserImage }}>
+            <UserContext.Provider value={{
+                chosenDays,
+                setChosenDays,
+            }}>
                 <BrowserRouter>
                     <Routes>
                         <Route path="/" element={< LoginScreen />} />

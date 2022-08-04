@@ -1,14 +1,22 @@
 import { useState } from "react";
 import styled from "styled-components"
+import { useContext } from "react";
+import UserContext from "../contexts/UserContext";
 
 
-
-export default function Day({ children }) {
+export default function Day({ children, index }) {
     const [selected, setSelected] = useState(false)
-
+    const { chosenDays, setChosenDays } = useContext(UserContext)
     return (
         <Wrapper onClick={() => {
-            setSelected(!selected)
+            if (selected === false) {
+                setSelected(true);
+                setChosenDays([...chosenDays, index])
+            } else {
+                setSelected(false)
+                let ind = chosenDays.indexOf(index);
+                chosenDays.splice(ind, 1);
+            }
         }} selected={selected}>
             {children}
         </Wrapper>
