@@ -32,8 +32,6 @@ export default function Habits() {
             </Wrapper>
         )
     } else {
-        console.log(habits)
-
         return (
             <Wrapper>
                 {habits.map((item, index) => {
@@ -48,5 +46,6 @@ export default function Habits() {
 const Wrapper = styled.div`
     h1{
         font-size: 17.98px;
+        margin-bottom: 110px;
     }
 `;
