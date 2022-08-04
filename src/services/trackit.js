@@ -1,6 +1,6 @@
 import axios from "axios"
 
-const baseURL = 'https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/';
+const baseURL = 'https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit';
 
 const days = ['D', 'S', 'T', 'Q', 'Q', 'S', 'S',]
 
@@ -22,13 +22,19 @@ function getHabits() {
 }
 
 function makeRegister(body) {
-    const promise = axios.post(`${baseURL}auth/sign-up`, body)
+    const promise = axios.post(`${baseURL}/auth/sign-up`, body)
     return promise
 }
 
 function makeLogin(body) {
-    const promise = axios.post(`${baseURL}auth/login`, body)
+    const promise = axios.post(`${baseURL}/auth/login`, body)
     return promise
 }
 
-export { makeLogin, makeRegister, getHabits, days };
+function createHabit(body) {
+    const config = createHeaders();
+    const promise = axios.post(`${baseURL}/habits`, body, config)
+    return promise
+}
+
+export { makeLogin, makeRegister, getHabits, createHabit, days };

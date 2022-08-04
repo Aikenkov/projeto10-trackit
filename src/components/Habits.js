@@ -1,34 +1,48 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { getHabits } from "../services/trackit";
+import Habit from "./Habit";
 
 
 export default function Habits() {
     const [habits, setHabits] = useState([])
+    const [reload, setReload] = useState(0)
+
+    /*  setTimeout(() => {
+         setReload(reload + 1);
+         console.log(reload)
+     }, 5000); */
+
+
     useEffect(() => {
         getHabits()
             .then((res) => {
-                setHabits(res.data)
+                setHabits(...habits, res.data);
             })
             .catch(() => {
                 console.log('Obtendo lista')
             })
-    })
+    }, [])
 
-    return (
-        <>
-            {habits.length === 0 ?
-                (<Wrapper>
-                    <h1>Você não tem nenhum hábito cadastrado ainda.
-                        Adicione um hábito para começar a trackear!</h1>
-                </Wrapper>) :
-                (<Wrapper>
-                    <h1>ai sim</h1>
-                </Wrapper>)}
-        </>
+    if (habits.length === 0) {
+        return (
+            <Wrapper>
+                <h1>Você não tem nenhum hábito cadastrado ainda.
+                    Adicione um hábito para começar a trackear!</h1>
+            </Wrapper>
+        )
+    } else {
+        console.log(habits)
 
+        return (
+            <Wrapper>
+                {habits.map((item, index) => {
+                    return <Habit title={item.name} key={index} habitsDays={item.days} />
+                })}
+            </Wrapper>
+        )
+    }
 
-    )
 }
 
 const Wrapper = styled.div`

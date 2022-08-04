@@ -12,6 +12,7 @@ import { useState } from "react";
 
 export default function App() {
     const [chosenDays, setChosenDays] = useState([])
+    const [submits, setSubmits] = useState(0)
 
     return (
         <>
@@ -19,6 +20,8 @@ export default function App() {
             <UserContext.Provider value={{
                 chosenDays,
                 setChosenDays,
+                submits,
+                setSubmits,
             }}>
                 <BrowserRouter>
                     <Routes>

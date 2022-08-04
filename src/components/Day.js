@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components"
 import { useContext } from "react";
 import UserContext from "../contexts/UserContext";
@@ -7,6 +7,12 @@ import UserContext from "../contexts/UserContext";
 export default function Day({ children, index }) {
     const [selected, setSelected] = useState(false)
     const { chosenDays, setChosenDays } = useContext(UserContext)
+    const { submits } = useContext(UserContext)
+
+    useEffect(() => {
+        setSelected(false)
+    }, [submits])
+
     return (
         <Wrapper onClick={() => {
             if (selected === false) {

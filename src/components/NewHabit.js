@@ -1,16 +1,46 @@
 import styled from "styled-components"
-import { days } from "../services/trackit";
-import Day from "./Day";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import UserContext from "../contexts/UserContext";
+
+import Day from "./Day";
+import { createHabit, days } from "../services/trackit";
 
 export default function NewHabit({ add, setAdd }) {
     const { chosenDays, setChosenDays } = useContext(UserContext)
+    const [title, setTitle] = useState("")
+    const { submits, setSubmits } = useContext(UserContext)
+
+    function submit() {
+
+
+        const body = {
+            name: title,
+            days: chosenDays,
+        }
+
+        if (chosenDays.length === 0) {
+            alert('Selecione ao menos um dia.')
+        } else if (title === "") {
+            alert('Escolha o nome do habito')
+        } else {
+            createHabit(body)
+                .then(res => {
+                    setSubmits(submits + 1);
+                    setTitle("");
+                    setChosenDays([]);
+                })
+        }
+    }
+
     return (
         <Wrapper add={add}>
             <div>
                 <input
                     placeholder="nome do hábito"
+                    value={title}
+                    onChange={(e) => {
+                        setTitle(e.target.value);
+                    }}
                 ></input>
                 <WeekDays>
                     {days.map((item, index) => {
@@ -26,8 +56,9 @@ export default function NewHabit({ add, setAdd }) {
             <Choice>
                 <h2 onClick={() => {
                     setAdd(false);
+
                 }}>Cancelar</h2>
-                <button>Salvar</button>
+                <button onClick={submit}>Salvar</button>
             </Choice>
 
         </Wrapper>
