@@ -5,8 +5,6 @@ import logo from "../assets/logo.png"
 import FormStyle from "../styles/FormStyle"
 import { makeLogin } from "../services/trackit";
 import ButtonContent from "../styles/ButtonContent";
-import { useContext } from "react";
-import UserContext from "../contexts/UserContext";
 
 export default function LoginScreen() {
     const [form, setForm] = useState({
@@ -16,7 +14,6 @@ export default function LoginScreen() {
         password: "",
     })
 
-    const { setUserImage } = useContext(UserContext)
     const [loading, setLoading] = useState('false')
 
     const navigate = useNavigate();
@@ -32,16 +29,16 @@ export default function LoginScreen() {
         setLoading('true');
         e.preventDefault();
         const body = {
-            email: "fabio.rod@gmail.com",
-            password: "31071999",
+            email: "neycalvo@gmail.com",
+            password: "calvo",
         }
 
         makeLogin(body)
             .catch(() => { console.log('deu errado'); setLoading('false') })
             .then(res => {
                 localStorage.setItem("token", res.data.token);
-                navigate("/hoje");
-                setUserImage(res.data.image)
+                localStorage.setItem("userImage", res.data.image);
+                navigate("/habitos");
             })
 
     }

@@ -7,8 +7,8 @@ export default function Footer() {
     const percentage = 66;
     return (
         <Wrapper>
-            <Link to="/">Hábitos</Link>
-            <Link to="/">
+            <Link to="/habitos">Hábitos</Link>
+            <Link to="/hoje">
                 <Progressbar>
                     <CircularProgressbar styles={buildStyles({
                         pathColor: `rgb(255, 255, 255)`,
@@ -18,7 +18,7 @@ export default function Footer() {
                     })} value={percentage} text={`Hoje`} />
                 </Progressbar>
             </Link>
-            <Link to="/">Histórico</Link>
+            <Link to="/historico">Histórico</Link>
         </Wrapper>
     )
 }

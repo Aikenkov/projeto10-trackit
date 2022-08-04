@@ -1,10 +1,11 @@
 import styled from "styled-components";
 
-export default function Header({ img }) {
+export default function Header() {
+    const userImage = localStorage.getItem("userImage")
     return (
         <Wrapper>
             <h1>TrackIt</h1>
-            <img src={img} alt="perfil" />
+            <img src={userImage} alt="perfil" />
         </Wrapper>
     )
 }
