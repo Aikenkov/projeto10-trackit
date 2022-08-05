@@ -1,24 +1,35 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import doneImage from '../assets/done-image.png'
-import { markAsDone } from "../services/trackit";
+import UserContext from "../contexts/UserContext";
+import { markAsDone, markAsUndone } from "../services/trackit";
+
 
 export default function TodayHabit({ title, done, senquence, record, Id }) {
-    const [selected, setSelected] = useState(false)
+    const [selected, setSelected] = useState(done)
+    const { submits, setSubmits } = useContext(UserContext);
 
 
     function turnMark() {
         if (selected === false) {
             markAsDone(Id)
                 .then(() => {
-                    setSelected(true)
+                    setSelected(true);
+                    setSubmits(submits + 1)
                 })
                 .catch(() => {
                     console.log("Deu errado ao marcar como feito")
                 })
+        } else {
+            markAsUndone(Id)
+                .then(() => {
+                    setSelected(false);
+                    setSubmits(submits - 1)
+                })
+                .catch(() => {
+                    console.log("Deu errado ao desmarcar")
+                })
         }
-
-
     }
 
     return (

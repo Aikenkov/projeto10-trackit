@@ -59,7 +59,7 @@ export default function TodayPage() {
                 </h1>
                 {concluded === 0 ?
                     <p>Nenhum hábito concluído ainda</p> :
-                    <p>{percent}% dos hábitos concluídos</p>}
+                    <h6>{percent}% dos hábitos concluídos</h6>}
             </div>
 
             {today.map((item) => {
@@ -88,6 +88,11 @@ const Wrapper = styled.div`
     }
     p{
         color: #BABABA;
+        font-size: 17.98px;
+        margin-bottom: 28px;
+    }
+    h6{
+        color: #8FC549;
         font-size: 17.98px;
         margin-bottom: 28px;
     }

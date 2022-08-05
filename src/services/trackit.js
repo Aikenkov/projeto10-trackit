@@ -52,8 +52,12 @@ function todayHabits() {
 function markAsDone(Id) {
     const config = createHeaders();
     const promise = axios.post(`${baseURL}/habits/${Id}/check`, {}, config);
-    console.log(config)
+    return promise;
+}
+function markAsUndone(Id) {
+    const config = createHeaders();
+    const promise = axios.post(`${baseURL}/habits/${Id}/uncheck`, {}, config);
     return promise;
 }
 
-export { makeLogin, makeRegister, getHabits, createHabit, DeleteHabit, todayHabits, markAsDone, days };
+export { makeLogin, makeRegister, getHabits, createHabit, DeleteHabit, todayHabits, markAsDone, markAsUndone, days };

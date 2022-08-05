@@ -8,8 +8,6 @@ import { useContext } from "react";
 export default function Footer() {
     const { percentage } = useContext(UserContext)
 
-
-    console.log(percentage)
     return (
         <Wrapper>
             <Link to="/habitos">Hábitos</Link>
