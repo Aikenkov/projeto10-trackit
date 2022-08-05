@@ -42,7 +42,8 @@ export default function NewHabit({ add, setAdd }) {
     }
 
     return (
-        <Wrapper add={add}>
+        <Wrapper add={add} loading={loading}>
+            <div></div>
             <div>
                 <input
                     placeholder="nome do hábito"
@@ -113,6 +114,7 @@ const WeekDays = styled.div`
 `;
 
 const Wrapper = styled.div`
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -125,11 +127,38 @@ const Wrapper = styled.div`
     width: 100%;
 
     ${(props) => {
+
         if (props.add) {
             return `opacity: 1; height: 180px;  padding: 18px 17px 15px;`
         } else {
 
             return ` opacity: 0; height: 0px; padding: 0px; visibility: hidden;`
+        }
+    }}
+
+    ${(props) => {
+        if (props.loading === "true") {
+            return ` input{
+                background-color: #F2F2F2;
+    }
+    & > :first-child{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(255, 255, 255, 0.5);
+    }
+    
+    `
+        } else {
+            return ` input{
+                background-color: white;
+    }
+    & > :first-child{
+        display:none;
+    }
+    `
         }
     }}
 
@@ -140,6 +169,8 @@ const Wrapper = styled.div`
         border-radius: 5px;
         width: 100%;
     }
+
+    
 
     & ::placeholder{
         color: var(--light-text);

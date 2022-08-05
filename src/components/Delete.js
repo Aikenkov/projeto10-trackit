@@ -6,7 +6,6 @@ import { DeleteHabit } from "../services/trackit";
 export default function Delete({ habitId }) {
     const [confirm, SetConfirm] = useState(false)
     const { submits, setSubmits } = useContext(UserContext)
-    console.log(confirm)
     useEffect(() => {
         if (confirm === true) {
             DeleteHabit(habitId)
