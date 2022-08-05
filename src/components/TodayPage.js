@@ -71,7 +71,7 @@ export default function TodayPage() {
                     Id={item.id}
                     title={item.name}
                     done={item.done}
-                    senquence={item.currentSequence}
+                    sequence={item.currentSequence}
                     record={item.highestSequence}
                 />
             })}

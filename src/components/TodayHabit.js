@@ -5,9 +5,17 @@ import UserContext from "../contexts/UserContext";
 import { markAsDone, markAsUndone } from "../services/trackit";
 
 
-export default function TodayHabit({ title, done, senquence, record, Id }) {
+export default function TodayHabit({ title, done, sequence, record, Id }) {
     const [selected, setSelected] = useState(done)
     const { submits, setSubmits } = useContext(UserContext);
+    const [checked, setCheked] = useState(false)
+    const [isrecord, setIsrecord] = useState(false)
+    useEffect(() => {
+
+        if (sequence === record && checked === true) {
+            setIsrecord(true)
+        }
+    }, [checked])
 
 
     function turnMark() {
@@ -15,7 +23,9 @@ export default function TodayHabit({ title, done, senquence, record, Id }) {
             markAsDone(Id)
                 .then(() => {
                     setSelected(true);
+                    setCheked(true);
                     setSubmits(submits + 1)
+
                 })
                 .catch(() => {
                     console.log("Deu errado ao marcar como feito")
@@ -36,8 +46,8 @@ export default function TodayHabit({ title, done, senquence, record, Id }) {
         <Wrapper>
             <div>
                 <h1>{title}</h1>
-                <span>Sequência atual: {senquence}</span>
-                <span>Seu recorde: {record}</span>
+                <span>Sequência atual: <Sequence checked={checked}>{sequence}</Sequence></span>
+                <span>Seu recorde: <Record isrecord={isrecord}>{record}</Record></span>
             </div>
             <IconDone done={done} onClick={turnMark}>
                 <img alt="done" src={doneImage} />
@@ -46,6 +56,16 @@ export default function TodayHabit({ title, done, senquence, record, Id }) {
         </Wrapper>
     )
 }
+
+const Sequence = styled.span`
+    color: ${props => props.checked ? `#8FC549` : `#666666`}
+`;
+
+const Record = styled.span`
+    color: ${props => props.isrecord ? `#8FC549` : `#666666`}
+`;
+
+
 
 const IconDone = styled.div`
         display: flex;
