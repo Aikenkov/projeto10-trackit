@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import UserContext from "../contexts/UserContext";
-import { todayHabits } from "../services/trackit";
+import { markAsDone, todayHabits } from "../services/trackit";
 import TodayHabit from "./TodayHabit";
 import dayjs from "dayjs";
 import "dayjs/locale/pt-br";
@@ -13,7 +13,7 @@ export default function TodayPage() {
     const { submits } = useContext(UserContext);
     const [concluded, setConcluded] = useState(0)
     const totalHabits = today.length;
-    const percent = (concluded / todayHabits) * 100
+    const percent = (concluded / totalHabits) * 100
 
     dayjs.extend(updateLocale);
     dayjs.updateLocale('pt-br', {
@@ -40,7 +40,7 @@ export default function TodayPage() {
             })
             .catch(() => {
                 console.log('Falha ao obter lista')
-            })
+            });
     }, [submits])
 
     return (
@@ -60,7 +60,7 @@ export default function TodayPage() {
                 }
                 return <TodayHabit
                     key={item.id}
-                    habitId={item.id}
+                    Id={item.id}
                     title={item.name}
                     done={item.done}
                     senquence={item.currentSequence}

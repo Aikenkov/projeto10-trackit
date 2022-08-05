@@ -3,12 +3,12 @@ import styled from "styled-components";
 import doneImage from '../assets/done-image.png'
 import { markAsDone } from "../services/trackit";
 
-export default function TodayHabit({ title, done, senquence, record, habitId }) {
+export default function TodayHabit({ title, done, senquence, record, Id }) {
     const [selected, setSelected] = useState(false)
 
     function turnMark() {
         if (selected === false) {
-            markAsDone(habitId)
+            markAsDone(Id)
                 .then(() => {
                     setSelected(true)
                 })

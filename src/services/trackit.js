@@ -46,13 +46,14 @@ function DeleteHabit(habitId) {
 function todayHabits() {
     const config = createHeaders();
     const promise = axios.get(`${baseURL}/habits/today`, config)
-    return promise
+    return promise;
 }
 
-function markAsDone({ habitId }) {
+function markAsDone(Id) {
     const config = createHeaders();
-    const promise = axios.post(`${baseURL}/habits/${habitId}/check`, config)
-    return promise
+    const promise = axios.post(`${baseURL}/habits/${Id}/check`, config);
+    console.log(config)
+    return promise;
 }
 
 export { makeLogin, makeRegister, getHabits, createHabit, DeleteHabit, todayHabits, markAsDone, days };

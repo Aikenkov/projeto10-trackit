@@ -39,7 +39,7 @@ export default function LoginScreen() {
                 setLoading("false")
                 localStorage.setItem("token", res.data.token);
                 localStorage.setItem("userImage", res.data.image);
-                navigate("/habitos");
+                navigate("/hoje");
             })
 
     }
