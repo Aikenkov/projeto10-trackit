@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import UserContext from "../contexts/UserContext";
 import { todayHabits } from "../services/trackit";
+import TodayHabit from "./TodayHabit";
 
 
 export default function TodayPage() {
@@ -19,7 +20,6 @@ export default function TodayPage() {
             })
     }, [submits])
 
-    console.log(today);
     return (
         <Wrapper>
             <div>
@@ -28,6 +28,16 @@ export default function TodayPage() {
                 </h1>
                 <p>Nenhum hábito concluído ainda</p>
             </div>
+
+            {today.map((item) => {
+                return <TodayHabit
+                    key={item.id}
+                    title={item.name}
+                    done={item.done}
+                    senquence={item.currentSequence}
+                    record={item.highestSequence}
+                />
+            })}
 
         </Wrapper>
     )
@@ -42,5 +52,6 @@ const Wrapper = styled.div`
     p{
         color: #BABABA;
         font-size: 17.98px;
+        margin-bottom: 28px;
     }
 `;
