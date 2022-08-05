@@ -16,6 +16,8 @@ export default function App() {
     const [chosenDays, setChosenDays] = useState([])
     const [submits, setSubmits] = useState(0)
     const [loading, setLoading] = useState('false')
+    const [percentage, setPercentage] = useState(0)
+
 
     return (
         <>
@@ -27,6 +29,9 @@ export default function App() {
                 setSubmits,
                 loading,
                 setLoading,
+                percentage,
+                setPercentage,
+
             }}>
                 <BrowserRouter>
                     <Routes>
