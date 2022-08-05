@@ -1,6 +1,24 @@
+import { useState } from "react";
 import styled from "styled-components";
 import doneImage from '../assets/done-image.png'
-export default function TodayHabit({ title, done, senquence, record }) {
+import { markAsDone } from "../services/trackit";
+
+export default function TodayHabit({ title, done, senquence, record, habitId }) {
+    const [selected, setSelected] = useState(false)
+
+    function turnMark() {
+        if (selected === false) {
+            markAsDone(habitId)
+                .then(() => {
+                    setSelected(true)
+                })
+                .catch(() => {
+                    console.log("Deu errado ao marcar como feito")
+                })
+        }
+
+
+    }
 
     return (
         <Wrapper>
@@ -9,7 +27,7 @@ export default function TodayHabit({ title, done, senquence, record }) {
                 <span>Sequência atual: {senquence}</span>
                 <span>Seu recorde: {record}</span>
             </div>
-            <IconDone>
+            <IconDone done={done} onClick={turnMark}>
                 <img alt="done" src={doneImage} />
             </IconDone>
 
@@ -23,17 +41,29 @@ const IconDone = styled.div`
         justify-content: center;
         box-sizing: border-box;
         display: flex;
-        background-color: #EBEBEB;
-        border: 1px solid #E7E7E7;
         width: 69px;
         height: 69px;
         border-radius: 5px;
+        cursor: pointer;
         
         img{
             height: 28px;
             width: 35px;
         }
 
+        ${props => {
+        if (props.done) {
+            return `
+                background: #8FC549;
+                border: none;
+                `
+        } else {
+            return `
+                background: #EBEBEB;
+                border: 1px solid #E7E7E7;
+                `
+        }
+    }}
 `;
 
 const Wrapper = styled.div`

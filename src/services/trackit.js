@@ -49,4 +49,10 @@ function todayHabits() {
     return promise
 }
 
-export { makeLogin, makeRegister, getHabits, createHabit, DeleteHabit, todayHabits, days };
+function markAsDone({ habitId }) {
+    const config = createHeaders();
+    const promise = axios.post(`${baseURL}/habits/${habitId}/check`, config)
+    return promise
+}
+
+export { makeLogin, makeRegister, getHabits, createHabit, DeleteHabit, todayHabits, markAsDone, days };
