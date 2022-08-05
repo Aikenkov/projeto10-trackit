@@ -13,6 +13,7 @@ import { useState } from "react";
 export default function App() {
     const [chosenDays, setChosenDays] = useState([])
     const [submits, setSubmits] = useState(0)
+    const [loading, setLoading] = useState('false')
 
     return (
         <>
@@ -22,6 +23,8 @@ export default function App() {
                 setChosenDays,
                 submits,
                 setSubmits,
+                loading,
+                setLoading,
             }}>
                 <BrowserRouter>
                     <Routes>

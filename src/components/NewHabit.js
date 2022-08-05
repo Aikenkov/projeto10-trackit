@@ -4,14 +4,16 @@ import UserContext from "../contexts/UserContext";
 
 import Day from "./Day";
 import { createHabit, days } from "../services/trackit";
+import ButtonContent from "../styles/ButtonContent";
 
 export default function NewHabit({ add, setAdd }) {
     const { chosenDays, setChosenDays } = useContext(UserContext)
     const [title, setTitle] = useState("")
     const { submits, setSubmits } = useContext(UserContext)
+    const { loading, setLoading } = useContext(UserContext)
 
     function submit() {
-
+        setLoading("true")
 
         const body = {
             name: title,
@@ -19,15 +21,22 @@ export default function NewHabit({ add, setAdd }) {
         }
 
         if (chosenDays.length === 0) {
-            alert('Selecione ao menos um dia.')
+            alert('Selecione ao menos um dia.');
+            setLoading("false");
         } else if (title === "") {
-            alert('Escolha o nome do habito')
+            alert('Escolha o nome do habito');
+            setLoading("false");
         } else {
             createHabit(body)
                 .then(res => {
                     setSubmits(submits + 1);
                     setTitle("");
                     setChosenDays([]);
+                    setLoading("false");
+                    setAdd(false)
+                })
+                .catch(() => {
+                    setLoading("false");
                 })
         }
     }
@@ -58,7 +67,7 @@ export default function NewHabit({ add, setAdd }) {
                     setAdd(false);
 
                 }}>Cancelar</h2>
-                <button onClick={submit}>Salvar</button>
+                <button onClick={submit}><ButtonContent loading={loading} text="Salvar" /></button>
             </Choice>
 
         </Wrapper>
@@ -84,13 +93,18 @@ const Choice = styled.div`
         align-items: center;
         background-color: var(--light-blue);
         border-radius: 5px;
-        color: white;
-        font-size: 15.98px;
         border: none;
         height: 35px;
         width: 84px;
         cursor: pointer;
     }
+
+    p{
+        color: white; 
+        font-size: 15.98px;
+
+    }
+
 `;
 
 const WeekDays = styled.div`

@@ -89,9 +89,7 @@ const Wrapper = styled.div`
 
     & ::placeholder{
         color: var(--light-text);
-    }
-
-    
+    }  
 
     p{
         color: #ffffff;

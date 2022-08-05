@@ -1,28 +1,23 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
+import UserContext from "../contexts/UserContext";
 import { getHabits } from "../services/trackit";
 import Habit from "./Habit";
 
 
 export default function Habits() {
     const [habits, setHabits] = useState([])
-    const [reload, setReload] = useState(0)
-
-    /*  setTimeout(() => {
-         setReload(reload + 1);
-         console.log(reload)
-     }, 5000); */
-
+    const { submits } = useContext(UserContext)
 
     useEffect(() => {
         getHabits()
             .then((res) => {
-                setHabits(...habits, res.data);
+                setHabits(res.data);
             })
             .catch(() => {
                 console.log('Obtendo lista')
             })
-    }, [])
+    }, [submits])
 
     if (habits.length === 0) {
         return (
@@ -35,7 +30,7 @@ export default function Habits() {
         return (
             <Wrapper>
                 {habits.map((item, index) => {
-                    return <Habit title={item.name} key={index} habitsDays={item.days} />
+                    return <Habit habitId={item.id} title={item.name} key={index} habitsDays={item.days} />
                 })}
             </Wrapper>
         )
@@ -44,8 +39,9 @@ export default function Habits() {
 }
 
 const Wrapper = styled.div`
+    margin-bottom: 110px;
+
     h1{
         font-size: 17.98px;
-        margin-bottom: 110px;
     }
 `;

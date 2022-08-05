@@ -1,10 +1,11 @@
 import styled from "styled-components"
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import logo from "../assets/logo.png"
 import FormStyle from "../styles/FormStyle"
 import { makeLogin } from "../services/trackit";
 import ButtonContent from "../styles/ButtonContent";
+import UserContext from "../contexts/UserContext";
 
 export default function LoginScreen() {
     const [form, setForm] = useState({
@@ -13,8 +14,7 @@ export default function LoginScreen() {
         image: "",
         password: "",
     })
-
-    const [loading, setLoading] = useState('false')
+    const { loading, setLoading } = useContext(UserContext)
 
     const navigate = useNavigate();
 
@@ -36,6 +36,7 @@ export default function LoginScreen() {
         makeLogin(body)
             .catch(() => { console.log('deu errado'); setLoading('false') })
             .then(res => {
+                setLoading("false")
                 localStorage.setItem("token", res.data.token);
                 localStorage.setItem("userImage", res.data.image);
                 navigate("/habitos");
@@ -56,6 +57,7 @@ export default function LoginScreen() {
                         name="email"
                         onChange={handleForm}
                         value={form.email}
+                        disabled
                     />
                     <input
                         placeholder="senha"

@@ -1,11 +1,15 @@
 import styled from "styled-components";
 import { days } from "../services/trackit";
+import Delete from "./Delete";
 
-export default function Habit({ title, habitsDays }) {
+
+
+export default function Habit({ title, habitsDays, habitId }) {
+
     return (
         <Wrapper>
             <h2>{title}</h2>
-            <ion-icon name="trash-outline"></ion-icon>
+            <Delete habitId={habitId} />
             <Week>
                 {days.map((item, index) => {
 
@@ -37,7 +41,7 @@ const Wrapper = styled.div`
     padding: 13px 0 15px 15px;
     margin-bottom: 10px;
     width: 100%;
-    height: 91px;
+    min-height: 91px; 
     border-radius: 5px;
     background-color: white;
     position: relative;

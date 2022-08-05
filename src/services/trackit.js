@@ -37,4 +37,10 @@ function createHabit(body) {
     return promise
 }
 
-export { makeLogin, makeRegister, getHabits, createHabit, days };
+function DeleteHabit(habitId) {
+    const config = createHeaders();
+    const promise = axios.delete(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${habitId}`, config)
+    return promise
+}
+
+export { makeLogin, makeRegister, getHabits, createHabit, DeleteHabit, days };
