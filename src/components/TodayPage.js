@@ -11,7 +11,7 @@ export default function TodayPage() {
     useEffect(() => {
         todayHabits()
             .then((res) => {
-                setToday([res.data]);
+                setToday(res.data);
                 console.log(res.data);
             })
             .catch(() => {
