@@ -51,7 +51,7 @@ function todayHabits() {
 
 function markAsDone(Id) {
     const config = createHeaders();
-    const promise = axios.post(`${baseURL}/habits/${Id}/check`, config);
+    const promise = axios.post(`${baseURL}/habits/${Id}/check`, {}, config);
     console.log(config)
     return promise;
 }

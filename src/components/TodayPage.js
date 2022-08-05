@@ -55,9 +55,9 @@ export default function TodayPage() {
             </div>
 
             {today.map((item) => {
-                if (item.done === true) {
+                /* if (item.done === true) {
                     setConcluded(concluded + 1)
-                }
+                } */
                 return <TodayHabit
                     key={item.id}
                     Id={item.id}
