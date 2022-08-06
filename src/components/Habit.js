@@ -56,6 +56,7 @@ const Wrapper = styled.div`
      
     h2{
         font-size: 19.98px; 
+        max-width: 90%;
     }
 `;
 
