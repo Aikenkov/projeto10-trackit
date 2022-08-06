@@ -24,7 +24,7 @@ const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 92px 18px 0;
+    margin: 100px 5vw;
 `;
 
 const AddHabit = styled.div`

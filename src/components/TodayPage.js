@@ -64,8 +64,8 @@ export default function TodayPage() {
 }
 
 const Wrapper = styled.div`
-    margin: 100px 18px;
-    max-width: 1000px;
+    margin: 100px 5vw;
+
     h1{
         font-size: 22.98px;
         color: var(--heavy-blue);

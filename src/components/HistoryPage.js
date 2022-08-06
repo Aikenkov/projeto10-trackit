@@ -11,7 +11,7 @@ export default function HistoryPage() {
 }
 
 const Wrapper = styled.div`
-    margin: 100px 22px 110px 17px;
+    margin: 100px 5vw;
 
     h1{
         color: var(--heavy-blue);
