@@ -1,6 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import GlobalStyle from "../styles/globalStyles";
-
 import LoginScreen from "./LoginScreen";
 import RegistrationScreen from "./RegistrationScreen";
 import PrivatePage from "./PrivatePage";
@@ -9,17 +8,12 @@ import TodayPage from "./TodayPage";
 import HistoryPage from "./HistoryPage";
 import UserContext from "../contexts/UserContext";
 import { useState } from "react";
-
-
-
 export default function App() {
-    const [chosenDays, setChosenDays] = useState([])
-    const [submits, setSubmits] = useState(0)
-    const [loading, setLoading] = useState('false')
-    const [percentage, setPercentage] = useState(0)
-
+    const [chosenDays, setChosenDays] = useState([]);
+    const [submits, setSubmits] = useState(0);
+    const [loading, setLoading] = useState('false');
+    const [percentage, setPercentage] = useState(0);
     const [concluded, setConcluded] = useState(0);
-
 
     return (
         <>
@@ -33,8 +27,8 @@ export default function App() {
                 setLoading,
                 percentage,
                 setPercentage,
-                concluded, setConcluded
-
+                concluded,
+                setConcluded,
             }}>
                 <BrowserRouter>
                     <Routes>
@@ -59,6 +53,5 @@ export default function App() {
                 </BrowserRouter>
             </UserContext.Provider>
         </>
-
     )
 }

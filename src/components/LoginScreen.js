@@ -1,7 +1,7 @@
-import styled from "styled-components"
+import styled from "styled-components";
 import { Link, useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
-import logo from "../assets/logo.png"
+import logo from "../assets/logo.png";
 import FormStyle from "../styles/FormStyle"
 import { makeLogin } from "../services/trackit";
 import ButtonContent from "../styles/ButtonContent";
@@ -11,37 +11,34 @@ export default function LoginScreen() {
     const [form, setForm] = useState({
         email: "",
         password: "",
-    })
-    const { loading, setLoading } = useContext(UserContext)
-
+    });
+    const { loading, setLoading } = useContext(UserContext);
     const navigate = useNavigate();
 
     function handleForm(e) {
         setForm({
             ...form,
             [e.target.name]: e.target.value,
-        })
+        });
     }
 
     function login(e) {
-
         setLoading('true');
         e.preventDefault();
         const body = {
             ...form,
-            /* email: "neycalvo@gmail.com",
-            password: "calvo", */
         }
-        console.log(body)
         makeLogin(body)
-            .catch(() => { console.log('deu errado'); setLoading('false') })
             .then(res => {
-                setLoading("false")
+                setLoading("false");
                 localStorage.setItem("token", res.data.token);
                 localStorage.setItem("userImage", res.data.image);
                 navigate("/hoje");
             })
-
+            .catch((res) => {
+                setLoading("false");
+                alert(res.response.data.message);
+            })
     }
 
 
@@ -71,11 +68,9 @@ export default function LoginScreen() {
                     </Link>
                 </FormStyle>
             </form>
-
         </Wrapper>
-    )
+    );
 }
-
 
 const Wrapper = styled.div`
     height: 100vh;
@@ -90,6 +85,5 @@ const Wrapper = styled.div`
         margin-bottom: 35px;
         margin-top: 70px;
     }
-    
 `;
 

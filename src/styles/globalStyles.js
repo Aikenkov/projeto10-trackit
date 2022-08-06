@@ -141,15 +141,17 @@ table {
         font-family: 'Playball', cursive;
         font-family: 'Lexend Deca', sans-serif;
 
-       
         --light-blue: #52B6FF;
         --heavy-blue: #126BA5;
         --light-text: #DBDBDB;
         --border-color: #D4D4D4;
-
+        
 		color: #666666;
 		font-weight: 400;
 
+        input:focus{
+            outline: 0;
+        }
     }
 
     body {

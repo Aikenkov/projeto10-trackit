@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
@@ -7,15 +7,14 @@ import { useContext, useEffect, useState } from "react";
 import { todayHabits } from "../services/trackit";
 
 export default function Footer() {
-    const { percentage, setPercentage } = useContext(UserContext)
+    const { percentage, setPercentage } = useContext(UserContext);
     const { concluded, setConcluded } = useContext(UserContext);
     const [today, setToday] = useState([]);
     const { submits } = useContext(UserContext);
-
     const totalHabits = today.length;
-    const percent = parseInt((concluded / totalHabits) * 100)
+    const percent = parseInt((concluded / totalHabits) * 100);
 
-    let marks = today.filter(item => item.done)
+    let marks = today.filter(item => item.done);
     useEffect(() => {
         setConcluded(marks.length);
         setPercentage(percent)
@@ -26,12 +25,11 @@ export default function Footer() {
             .then((res) => {
                 setToday(res.data);
             })
-            .catch(() => {
-                console.log('Falha ao obter lista')
+            .catch((res) => {
+                alert(res.response.data.message);
             });
 
-    }, [submits])
-
+    }, [submits]);
 
     return (
         <Wrapper>
@@ -52,6 +50,8 @@ export default function Footer() {
 }
 
 const Wrapper = styled.div`
+    box-sizing: border-box;
+    padding: 0 33px;
     position: fixed;
     bottom: 0;
     left: 0;
@@ -66,21 +66,15 @@ const Wrapper = styled.div`
         text-decoration: none;
         color: var(--light-blue);
         font-size: 18px;
-        padding: 0 30px;
     }
-    
 `;
 
 const Progressbar = styled.div`
-position: absolute;
-bottom: 10px;
-left: calc(50vw - 45.5px);
+transform: translateY(-20px);
     height: 91px;
     width: 91px;
     padding: 6px;
     box-sizing: border-box;
     background-color: var(--light-blue);
-    border-radius: 50%;
-    
-    
+    border-radius: 50%;   
 `;

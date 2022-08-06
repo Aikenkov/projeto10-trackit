@@ -1,44 +1,45 @@
 import { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
-import doneImage from '../assets/done-image.png'
+import doneImage from '../assets/done-image.png';
 import UserContext from "../contexts/UserContext";
 import { markAsDone, markAsUndone } from "../services/trackit";
 
-
 export default function TodayHabit({ title, done, sequence, record, Id }) {
-    const [selected, setSelected] = useState(done)
+    const [selected, setSelected] = useState(done);
     const { submits, setSubmits } = useContext(UserContext);
-    const [checked, setCheked] = useState(false)
-    const [isrecord, setIsrecord] = useState(false)
+    const [checked, setCheked] = useState(false);
+    const [isrecord, setIsrecord] = useState(false);
+    const sequencetext = sequence === 1 ? "dia" : "dias";
+    const recordtext = record === 1 ? "dia" : "dias";
     useEffect(() => {
-
-        if (sequence === record && checked === true) {
-            setIsrecord(true)
+        if (sequence === record && selected === true) {
+            setIsrecord(true);
+            setCheked(true);
+        } else {
+            setIsrecord(false);
+            setCheked(false);
         }
-    }, [checked])
-
+    }, [selected]);
 
     function turnMark() {
         if (selected === false) {
             markAsDone(Id)
                 .then(() => {
                     setSelected(true);
-                    setCheked(true);
-                    setSubmits(submits + 1)
-
+                    setSubmits(submits + 1);
                 })
-                .catch(() => {
-                    console.log("Deu errado ao marcar como feito")
+                .catch((res) => {
+                    alert(res.response.data.message);
                 })
         } else {
             markAsUndone(Id)
                 .then(() => {
                     setSelected(false);
-                    setSubmits(submits - 1)
+                    setSubmits(submits - 1);
                 })
-                .catch(() => {
-                    console.log("Deu errado ao desmarcar")
-                })
+                .catch((res) => {
+                    alert(res.response.data.message);
+                });
         }
     }
 
@@ -46,8 +47,8 @@ export default function TodayHabit({ title, done, sequence, record, Id }) {
         <Wrapper>
             <div>
                 <h1>{title}</h1>
-                <span>Sequência atual: <Sequence checked={checked}>{sequence}</Sequence></span>
-                <span>Seu recorde: <Record isrecord={isrecord}>{record}</Record></span>
+                <span>Sequência atual: <Sequence checked={checked}>{sequence}</Sequence> {sequencetext}</span>
+                <span>Seu recorde: <Record isrecord={isrecord}>{record}</Record> {recordtext}</span>
             </div>
             <IconDone done={done} onClick={turnMark}>
                 <img alt="done" src={doneImage} />
@@ -65,8 +66,6 @@ const Record = styled.span`
     color: ${props => props.isrecord ? `#8FC549` : `#666666`}
 `;
 
-
-
 const IconDone = styled.div`
         display: flex;
         align-items: center;
@@ -82,7 +81,6 @@ const IconDone = styled.div`
             height: 28px;
             width: 35px;
         }
-
         ${props => {
         if (props.done) {
             return `
@@ -114,9 +112,6 @@ const Wrapper = styled.div`
         flex-direction: column;
         max-width: 74%;
     }
-
-   
-
     h1{
         font-size: 19.976px;
         margin-bottom: 7px;

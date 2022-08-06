@@ -1,32 +1,31 @@
 import { useEffect, useState } from "react";
-import styled from "styled-components"
+import styled from "styled-components";
 import { useContext } from "react";
 import UserContext from "../contexts/UserContext";
 
-
 export default function Day({ children, index }) {
-    const [selected, setSelected] = useState(false)
-    const { chosenDays, setChosenDays } = useContext(UserContext)
-    const { submits } = useContext(UserContext)
+    const [selected, setSelected] = useState(false);
+    const { chosenDays, setChosenDays } = useContext(UserContext);
+    const { submits } = useContext(UserContext);
 
     useEffect(() => {
-        setSelected(false)
-    }, [submits])
+        setSelected(false);
+    }, [submits]);
 
     return (
         <Wrapper onClick={() => {
             if (selected === false) {
                 setSelected(true);
-                setChosenDays([...chosenDays, index])
+                setChosenDays([...chosenDays, index]);
             } else {
-                setSelected(false)
+                setSelected(false);
                 let ind = chosenDays.indexOf(index);
                 chosenDays.splice(ind, 1);
             }
         }} selected={selected}>
             {children}
         </Wrapper>
-    )
+    );
 }
 
 const Wrapper = styled.div`
@@ -49,5 +48,5 @@ const Wrapper = styled.div`
             return `background-color: #CFCFCF;        
                         color: white;`
         }
-    }}
+    }};
 `;
