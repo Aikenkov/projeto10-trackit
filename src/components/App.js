@@ -18,6 +18,8 @@ export default function App() {
     const [loading, setLoading] = useState('false')
     const [percentage, setPercentage] = useState(0)
 
+    const [concluded, setConcluded] = useState(0);
+
 
     return (
         <>
@@ -31,6 +33,7 @@ export default function App() {
                 setLoading,
                 percentage,
                 setPercentage,
+                concluded, setConcluded
 
             }}>
                 <BrowserRouter>

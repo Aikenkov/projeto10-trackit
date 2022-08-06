@@ -3,10 +3,35 @@ import { Link } from "react-router-dom";
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import UserContext from "../contexts/UserContext";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
+import { todayHabits } from "../services/trackit";
 
 export default function Footer() {
-    const { percentage } = useContext(UserContext)
+    const { percentage, setPercentage } = useContext(UserContext)
+    const { concluded, setConcluded } = useContext(UserContext);
+    const [today, setToday] = useState([]);
+    const { submits } = useContext(UserContext);
+
+    const totalHabits = today.length;
+    const percent = parseInt((concluded / totalHabits) * 100)
+
+    let marks = today.filter(item => item.done)
+    useEffect(() => {
+        setConcluded(marks.length);
+        setPercentage(percent)
+    }, [marks])
+
+    useEffect(() => {
+        todayHabits()
+            .then((res) => {
+                setToday(res.data);
+            })
+            .catch(() => {
+                console.log('Falha ao obter lista')
+            });
+
+    }, [submits])
+
 
     return (
         <Wrapper>

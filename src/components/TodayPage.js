@@ -11,17 +11,8 @@ import updateLocale from "dayjs/plugin/updateLocale";
 export default function TodayPage() {
     const [today, setToday] = useState([]);
     const { submits } = useContext(UserContext);
-    const [concluded, setConcluded] = useState(0);
-    const { setPercentage } = useContext(UserContext)
-
-    const totalHabits = today.length;
-    const percent = parseInt((concluded / totalHabits) * 100)
-
-    let marks = today.filter(item => item.done)
-    useEffect(() => {
-        setConcluded(marks.length);
-        setPercentage(percent)
-    }, [marks])
+    const { concluded } = useContext(UserContext);
+    const { percentage } = useContext(UserContext)
 
     dayjs.extend(updateLocale);
     dayjs.updateLocale('pt-br', {
@@ -59,7 +50,7 @@ export default function TodayPage() {
                 </h1>
                 {concluded === 0 ?
                     <p>Nenhum hábito concluído ainda</p> :
-                    <h6>{percent}% dos hábitos concluídos</h6>}
+                    <h6>{percentage}% dos hábitos concluídos</h6>}
             </div>
 
             {today.map((item) => {
