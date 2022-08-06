@@ -10,8 +10,6 @@ import UserContext from "../contexts/UserContext";
 export default function LoginScreen() {
     const [form, setForm] = useState({
         email: "",
-        name: "",
-        image: "",
         password: "",
     })
     const { loading, setLoading } = useContext(UserContext)
@@ -26,13 +24,15 @@ export default function LoginScreen() {
     }
 
     function login(e) {
+
         setLoading('true');
         e.preventDefault();
         const body = {
-            email: "neycalvo@gmail.com",
-            password: "calvo",
+            ...form,
+            /* email: "neycalvo@gmail.com",
+            password: "calvo", */
         }
-
+        console.log(body)
         makeLogin(body)
             .catch(() => { console.log('deu errado'); setLoading('false') })
             .then(res => {
@@ -57,7 +57,6 @@ export default function LoginScreen() {
                         name="email"
                         onChange={handleForm}
                         value={form.email}
-                        disabled
                     />
                     <input
                         placeholder="senha"
