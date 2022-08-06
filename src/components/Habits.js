@@ -4,19 +4,18 @@ import UserContext from "../contexts/UserContext";
 import { getHabits } from "../services/trackit";
 import Habit from "./Habit";
 
-
 export default function Habits() {
-    const [habits, setHabits] = useState([])
-    const { submits } = useContext(UserContext)
+    const [habits, setHabits] = useState([]);
+    const { submits } = useContext(UserContext);
 
     useEffect(() => {
         getHabits()
             .then((res) => {
                 setHabits(res.data);
             })
-            .catch(() => {
-                console.log('Obtendo lista')
-            })
+            .catch((res) => {
+                alert(res.response.data.message);
+            });
     }, [submits])
 
     if (habits.length === 0) {
@@ -25,7 +24,7 @@ export default function Habits() {
                 <h1>Você não tem nenhum hábito cadastrado ainda.
                     Adicione um hábito para começar a trackear!</h1>
             </Wrapper>
-        )
+        );
     } else {
         return (
             <Wrapper>
@@ -33,7 +32,7 @@ export default function Habits() {
                     return <Habit habitId={item.id} title={item.name} key={index} habitsDays={item.days} />
                 })}
             </Wrapper>
-        )
+        );
     }
 
 }

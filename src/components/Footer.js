@@ -17,7 +17,7 @@ export default function Footer() {
     let marks = today.filter(item => item.done);
     useEffect(() => {
         setConcluded(marks.length);
-        setPercentage(percent)
+        setPercentage(percent);
     }, [marks])
 
     useEffect(() => {
@@ -40,7 +40,7 @@ export default function Footer() {
                         pathColor: `rgb(255, 255, 255)`,
                         textColor: "#ffffff",
                         trailColor: 'transparent',
-                        textSize: '22px',
+                        textSize: '22px'
                     })} value={percentage} text={`Hoje`} />
                 </Progressbar>
             </Link>

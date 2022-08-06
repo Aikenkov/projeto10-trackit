@@ -53,7 +53,6 @@ export default function TodayHabit({ title, done, sequence, record, Id }) {
             <IconDone done={done} onClick={turnMark}>
                 <img alt="done" src={doneImage} />
             </IconDone>
-
         </Wrapper>
     )
 }

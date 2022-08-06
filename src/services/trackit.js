@@ -1,9 +1,6 @@
-import axios from "axios"
-
+import axios from "axios";
 const baseURL = 'https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit';
-
-const days = ['D', 'S', 'T', 'Q', 'Q', 'S', 'S',]
-
+const days = ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'];
 
 function createHeaders() {
     const auth = localStorage.getItem("token");
@@ -18,34 +15,34 @@ function createHeaders() {
 function getHabits() {
     const config = createHeaders();
     const promise = axios.get(`${baseURL}/habits`, config);
-    return promise
+    return promise;
 }
 
 function makeRegister(body) {
-    const promise = axios.post(`${baseURL}/auth/sign-up`, body)
-    return promise
+    const promise = axios.post(`${baseURL}/auth/sign-up`, body);
+    return promise;
 }
 
 function makeLogin(body) {
-    const promise = axios.post(`${baseURL}/auth/login`, body)
-    return promise
+    const promise = axios.post(`${baseURL}/auth/login`, body);
+    return promise;
 }
 
 function createHabit(body) {
     const config = createHeaders();
-    const promise = axios.post(`${baseURL}/habits`, body, config)
-    return promise
+    const promise = axios.post(`${baseURL}/habits`, body, config);
+    return promise;
 }
 
 function DeleteHabit(habitId) {
     const config = createHeaders();
-    const promise = axios.delete(`${baseURL}/habits/${habitId}`, config)
-    return promise
+    const promise = axios.delete(`${baseURL}/habits/${habitId}`, config);
+    return promise;
 }
 
 function todayHabits() {
     const config = createHeaders();
-    const promise = axios.get(`${baseURL}/habits/today`, config)
+    const promise = axios.get(`${baseURL}/habits/today`, config);
     return promise;
 }
 
@@ -60,4 +57,14 @@ function markAsUndone(Id) {
     return promise;
 }
 
-export { makeLogin, makeRegister, getHabits, createHabit, DeleteHabit, todayHabits, markAsDone, markAsUndone, days };
+export {
+    makeLogin,
+    makeRegister,
+    getHabits,
+    createHabit,
+    DeleteHabit,
+    todayHabits,
+    markAsDone,
+    markAsUndone,
+    days
+};

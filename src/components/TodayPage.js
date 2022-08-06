@@ -7,12 +7,11 @@ import dayjs from "dayjs";
 import "dayjs/locale/pt-br";
 import updateLocale from "dayjs/plugin/updateLocale";
 
-
 export default function TodayPage() {
     const [today, setToday] = useState([]);
     const { submits } = useContext(UserContext);
     const { concluded } = useContext(UserContext);
-    const { percentage } = useContext(UserContext)
+    const { percentage } = useContext(UserContext);
 
     dayjs.extend(updateLocale);
     dayjs.updateLocale('pt-br', {
@@ -21,8 +20,8 @@ export default function TodayPage() {
         ]
     });
     const now = dayjs().locale('pt-br').format("dddd", "DD/MM");
-    let month = (dayjs().month()) + 1
-    let monthDay = dayjs().date()
+    let month = (dayjs().month()) + 1;
+    let monthDay = dayjs().date();
     if (monthDay < 10) {
         monthDay = `0${monthDay}`;
     }
@@ -30,17 +29,15 @@ export default function TodayPage() {
         month = `0${month}`;
     }
 
-
     useEffect(() => {
         todayHabits()
             .then((res) => {
                 setToday(res.data);
             })
-            .catch(() => {
-                console.log('Falha ao obter lista')
+            .catch((res) => {
+                alert(res.response.data.message);
             });
-
-    }, [submits])
+    }, [submits]);
 
     return (
         <Wrapper>
@@ -52,11 +49,7 @@ export default function TodayPage() {
                     <p>Nenhum hábito concluído ainda</p> :
                     <h6>{percentage}% dos hábitos concluídos</h6>}
             </div>
-
             {today.map((item) => {
-                /* if (item.done === true) {
-                    setConcluded(concluded + 1)
-                } */
                 return <TodayHabit
                     key={item.id}
                     Id={item.id}
@@ -66,9 +59,8 @@ export default function TodayPage() {
                     record={item.highestSequence}
                 />
             })}
-
         </Wrapper>
-    )
+    );
 }
 
 const Wrapper = styled.div`

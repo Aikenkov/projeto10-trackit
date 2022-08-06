@@ -1,11 +1,10 @@
-import { useState } from "react"
-import styled from "styled-components"
-import Habits from "./Habits"
-import NewHabit from "./NewHabit"
-
+import { useState } from "react";
+import styled from "styled-components";
+import Habits from "./Habits";
+import NewHabit from "./NewHabit";
 
 export default function HabitsPage() {
-    const [add, setAdd] = useState(false)
+    const [add, setAdd] = useState(false);
 
     return (
         <Wrapper>
@@ -18,9 +17,8 @@ export default function HabitsPage() {
             <NewHabit add={add} setAdd={setAdd} />
             <Habits />
         </Wrapper>
-    )
+    );
 }
-
 
 const Wrapper = styled.div`
     display: flex;

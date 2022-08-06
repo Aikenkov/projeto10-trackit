@@ -1,13 +1,13 @@
 import styled from "styled-components";
 
 export default function Header() {
-    const userImage = localStorage.getItem("userImage")
+    const userImage = localStorage.getItem("userImage");
     return (
         <Wrapper>
             <h1>TrackIt</h1>
             <img src={userImage} alt="perfil" />
         </Wrapper>
-    )
+    );
 }
 
 const Wrapper = styled.div`
@@ -24,18 +24,15 @@ const Wrapper = styled.div`
     justify-content: space-between;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
     z-index: 5;
-
+    
     img{
         height: 51px;
         width: 51px;
         border-radius: 50%;
     }
-
     h1{
         font-size: 39px;
         font-family: Playball;
         color: #ffffff;
     }
-    
-
 `;

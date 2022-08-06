@@ -28,7 +28,7 @@ export default function App() {
                 percentage,
                 setPercentage,
                 concluded,
-                setConcluded,
+                setConcluded
             }}>
                 <BrowserRouter>
                     <Routes>

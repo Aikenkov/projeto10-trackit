@@ -1,7 +1,6 @@
 import { ThreeDots } from "react-loader-spinner";
 
 export default function ButtonContent({ loading, text }) {
-
     if (loading === "true") {
         return (
             <ThreeDots
@@ -14,11 +13,10 @@ export default function ButtonContent({ loading, text }) {
                 wrapperClassName=""
                 visible={true}
             />
-        )
+        );
     } else {
         return (
             <p>{text}</p>
-        )
+        );
     }
-
 }

@@ -10,7 +10,7 @@ import UserContext from "../contexts/UserContext";
 export default function LoginScreen() {
     const [form, setForm] = useState({
         email: "",
-        password: "",
+        password: ""
     });
     const { loading, setLoading } = useContext(UserContext);
     const navigate = useNavigate();
@@ -18,7 +18,7 @@ export default function LoginScreen() {
     function handleForm(e) {
         setForm({
             ...form,
-            [e.target.name]: e.target.value,
+            [e.target.name]: e.target.value
         });
     }
 
@@ -26,7 +26,7 @@ export default function LoginScreen() {
         setLoading('true');
         e.preventDefault();
         const body = {
-            ...form,
+            ...form
         }
         makeLogin(body)
             .then(res => {
@@ -40,7 +40,6 @@ export default function LoginScreen() {
                 alert(res.response.data.message);
             })
     }
-
 
     return (
         <Wrapper>

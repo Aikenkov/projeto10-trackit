@@ -2,17 +2,13 @@ import styled from "styled-components";
 import { days } from "../services/trackit";
 import Delete from "./Delete";
 
-
-
 export default function Habit({ title, habitsDays, habitId }) {
-
     return (
         <Wrapper>
             <h2>{title}</h2>
             <Delete habitId={habitId} />
             <Week>
                 {days.map((item, index) => {
-
                     if (!habitsDays.includes(index)) {
                         return <WeekDay
                             key={index}
@@ -28,12 +24,10 @@ export default function Habit({ title, habitsDays, habitId }) {
                             color="white"
                         >{item}</WeekDay>
                     }
-
-
                 })}
             </Week>
         </Wrapper>
-    )
+    );
 }
 
 const Wrapper = styled.div`
@@ -59,8 +53,6 @@ const Wrapper = styled.div`
         max-width: 90%;
     }
 `;
-
-
 
 const WeekDay = styled.div`
         display: flex;
