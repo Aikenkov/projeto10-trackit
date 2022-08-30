@@ -11,72 +11,72 @@ export default function RegistrationScreen() {
         email: "",
         name: "",
         image: "",
-        password: ""
+        password: "",
     });
-    const [loading, setLoading] = useState('false');
+    const [loading, setLoading] = useState("false");
     const navigate = useNavigate();
 
     function handleForm(e) {
         setForm({
             ...form,
-            [e.target.name]: e.target.value
+            [e.target.name]: e.target.value,
         });
     }
 
     function Register(e) {
-        setLoading('true');
+        setLoading("true");
         e.preventDefault();
         const body = {
-            ...form
-        }
+            ...form,
+        };
         makeRegister(body)
             .then(() => {
                 navigate("/");
             })
             .catch((res) => {
                 alert(res.response.data.message);
-                setLoading('false');
+                setLoading("false");
             });
     }
 
     return (
         <Wrapper>
-            <img src={logo} alt="logo" />
+            <img src={logo} alt='logo' />
             <form onSubmit={Register}>
                 <FormStyle loading={loading}>
                     <div></div>
                     <input
-                        placeholder="email"
-                        type="email"
-                        name="email"
+                        placeholder='email'
+                        type='email'
+                        name='email'
                         onChange={handleForm}
                         value={form.email}
                     />
                     <input
-                        placeholder="senha"
-                        type="password"
-                        name="password"
+                        placeholder='senha'
+                        type='password'
+                        name='password'
                         onChange={handleForm}
                         value={form.password}
                     />
                     <input
-                        placeholder="nome"
-                        type="text"
-                        name="name"
+                        placeholder='nome'
+                        type='text'
+                        name='name'
                         onChange={handleForm}
                         value={form.name}
                     />
                     <input
-                        placeholder="foto"
-                        type="text"
-                        name="image"
+                        placeholder='foto'
+                        type='text'
+                        name='image'
                         onChange={handleForm}
                         value={form.image}
                     />
-                    <button ><ButtonContent loading={loading} text="Cadastrar" /></button>
-                    <Link to="/">
-                        Já tem uma conta? Faça login!
-                    </Link>
+                    <button>
+                        <ButtonContent loading={loading} text='Cadastrar' />
+                    </button>
+                    <Link to='/'>Já tem uma conta? Faça login!</Link>
                 </FormStyle>
             </form>
         </Wrapper>
@@ -90,7 +90,7 @@ const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    img{
+    img {
         width: 180px;
         height: 178.38px;
         margin-bottom: 35px;

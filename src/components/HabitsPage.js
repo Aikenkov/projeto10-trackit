@@ -10,9 +10,13 @@ export default function HabitsPage() {
         <Wrapper>
             <AddHabit>
                 <h1>Meus hábitos</h1>
-                <button onClick={() => {
-                    setAdd(true);
-                }}>+</button>
+                <button
+                    onClick={() => {
+                        setAdd(true);
+                    }}
+                >
+                    +
+                </button>
             </AddHabit>
             <NewHabit add={add} setAdd={setAdd} />
             <Habits />
@@ -33,12 +37,12 @@ const AddHabit = styled.div`
     align-items: center;
     margin-bottom: 22px;
 
-    h1{
+    h1 {
         font-family: Lexend Deca;
         font-size: 22.98px;
         color: var(--heavy-blue);
     }
-    button{
+    button {
         box-sizing: border-box;
         display: flex;
         align-items: center;

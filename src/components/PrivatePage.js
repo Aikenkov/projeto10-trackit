@@ -6,9 +6,9 @@ function RenderError() {
     const navigate = useNavigate();
     localStorage.clear("token");
     setTimeout(() => {
-        navigate('/');
+        navigate("/");
     }, 2000);
-    return (<h1>VOCÊ NÃO É AUTORIZADO</h1>);
+    return <h1>VOCÊ NÃO É AUTORIZADO</h1>;
 }
 
 export default function PrivatePage({ children }) {

@@ -1,13 +1,13 @@
 import axios from "axios";
-const baseURL = 'https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit';
-const days = ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'];
+const baseURL = "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit";
+const days = ["D", "S", "T", "Q", "Q", "S", "S"];
 
 function createHeaders() {
     const auth = localStorage.getItem("token");
     const config = {
         headers: {
-            Authorization: `Bearer ${auth}`
-        }
+            Authorization: `Bearer ${auth}`,
+        },
     };
     return config;
 }
@@ -66,5 +66,5 @@ export {
     todayHabits,
     markAsDone,
     markAsUndone,
-    days
+    days,
 };

@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
-import doneImage from '../assets/done-image.png';
+import doneImage from "../assets/done-image.png";
 import UserContext from "../contexts/UserContext";
 import { markAsDone, markAsUndone } from "../services/trackit";
 
@@ -30,7 +30,7 @@ export default function TodayHabit({ title, done, sequence, record, Id }) {
                 })
                 .catch((res) => {
                     alert(res.response.data.message);
-                })
+                });
         } else {
             markAsUndone(Id)
                 .then(() => {
@@ -47,50 +47,57 @@ export default function TodayHabit({ title, done, sequence, record, Id }) {
         <Wrapper>
             <div>
                 <h1>{title}</h1>
-                <span>Sequência atual: <Sequence checked={checked}>{sequence}</Sequence> {sequencetext}</span>
-                <span>Seu recorde: <Record isrecord={isrecord}>{record}</Record> {recordtext}</span>
+                <span>
+                    Sequência atual:{" "}
+                    <Sequence checked={checked}>{sequence}</Sequence>{" "}
+                    {sequencetext}
+                </span>
+                <span>
+                    Seu recorde: <Record isrecord={isrecord}>{record}</Record>{" "}
+                    {recordtext}
+                </span>
             </div>
             <IconDone done={done} onClick={turnMark}>
-                <img alt="done" src={doneImage} />
+                <img alt='done' src={doneImage} />
             </IconDone>
         </Wrapper>
-    )
+    );
 }
 
 const Sequence = styled.span`
-    color: ${props => props.checked ? `#8FC549` : `#666666`}
+    color: ${(props) => (props.checked ? `#8FC549` : `#666666`)};
 `;
 
 const Record = styled.span`
-    color: ${props => props.isrecord ? `#8FC549` : `#666666`}
+    color: ${(props) => (props.isrecord ? `#8FC549` : `#666666`)};
 `;
 
 const IconDone = styled.div`
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        box-sizing: border-box;
-        display: flex;
-        width: 69px;
-        height: 69px;
-        border-radius: 5px;
-        cursor: pointer;
-        
-        img{
-            height: 28px;
-            width: 35px;
-        }
-        ${props => {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    display: flex;
+    width: 69px;
+    height: 69px;
+    border-radius: 5px;
+    cursor: pointer;
+
+    img {
+        height: 28px;
+        width: 35px;
+    }
+    ${(props) => {
         if (props.done) {
             return `
                 background: #8FC549;
                 border: none;
-                `
+                `;
         } else {
             return `
                 background: #EBEBEB;
                 border: 1px solid #E7E7E7;
-                `
+                `;
         }
     }}
 `;
@@ -106,16 +113,16 @@ const Wrapper = styled.div`
     margin-bottom: 10px;
     border-radius: 5px;
 
-   & > :first-child {
+    & > :first-child {
         display: flex;
         flex-direction: column;
         max-width: 74%;
     }
-    h1{
+    h1 {
         font-size: 19.976px;
         margin-bottom: 7px;
     }
-    span{
+    span {
         font-size: 12.976px;
     }
 `;

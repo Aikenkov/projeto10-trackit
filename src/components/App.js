@@ -11,47 +11,61 @@ import { useState } from "react";
 export default function App() {
     const [chosenDays, setChosenDays] = useState([]);
     const [submits, setSubmits] = useState(0);
-    const [loading, setLoading] = useState('false');
+    const [loading, setLoading] = useState("false");
     const [percentage, setPercentage] = useState(0);
     const [concluded, setConcluded] = useState(0);
 
     return (
         <>
             <GlobalStyle />
-            <UserContext.Provider value={{
-                chosenDays,
-                setChosenDays,
-                submits,
-                setSubmits,
-                loading,
-                setLoading,
-                percentage,
-                setPercentage,
-                concluded,
-                setConcluded
-            }}>
+            <UserContext.Provider
+                value={{
+                    chosenDays,
+                    setChosenDays,
+                    submits,
+                    setSubmits,
+                    loading,
+                    setLoading,
+                    percentage,
+                    setPercentage,
+                    concluded,
+                    setConcluded,
+                }}
+            >
                 <BrowserRouter>
                     <Routes>
-                        <Route path="/" element={< LoginScreen />} />
-                        <Route path="/cadastro" element={< RegistrationScreen />} />
-                        <Route path="/habitos" element={
-                            <PrivatePage>
-                                <HabitsPage />
-                            </PrivatePage>
-                        } />
-                        <Route path="/hoje" element={
-                            <PrivatePage>
-                                <TodayPage />
-                            </PrivatePage>
-                        } />
-                        <Route path="/historico" element={
-                            <PrivatePage>
-                                <HistoryPage />
-                            </PrivatePage>
-                        } />
+                        <Route path='/' element={<LoginScreen />} />
+                        <Route
+                            path='/cadastro'
+                            element={<RegistrationScreen />}
+                        />
+                        <Route
+                            path='/habitos'
+                            element={
+                                <PrivatePage>
+                                    <HabitsPage />
+                                </PrivatePage>
+                            }
+                        />
+                        <Route
+                            path='/hoje'
+                            element={
+                                <PrivatePage>
+                                    <TodayPage />
+                                </PrivatePage>
+                            }
+                        />
+                        <Route
+                            path='/historico'
+                            element={
+                                <PrivatePage>
+                                    <HistoryPage />
+                                </PrivatePage>
+                            }
+                        />
                     </Routes>
                 </BrowserRouter>
             </UserContext.Provider>
         </>
-    )
+    );
 }

@@ -16,31 +16,39 @@ export default function Habits() {
             .catch((res) => {
                 alert(res.response.data.message);
             });
-    }, [submits])
+    }, [submits]);
 
     if (habits.length === 0) {
         return (
             <Wrapper>
-                <h1>Você não tem nenhum hábito cadastrado ainda.
-                    Adicione um hábito para começar a trackear!</h1>
+                <h1>
+                    Você não tem nenhum hábito cadastrado ainda. Adicione um
+                    hábito para começar a trackear!
+                </h1>
             </Wrapper>
         );
     } else {
         return (
             <Wrapper>
                 {habits.map((item, index) => {
-                    return <Habit habitId={item.id} title={item.name} key={index} habitsDays={item.days} />
+                    return (
+                        <Habit
+                            habitId={item.id}
+                            title={item.name}
+                            key={index}
+                            habitsDays={item.days}
+                        />
+                    );
                 })}
             </Wrapper>
         );
     }
-
 }
 
 const Wrapper = styled.div`
     margin-bottom: 110px;
 
-    h1{
+    h1 {
         font-size: 17.98px;
     }
 `;

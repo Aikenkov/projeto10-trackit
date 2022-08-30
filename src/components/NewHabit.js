@@ -15,13 +15,13 @@ export default function NewHabit({ add, setAdd }) {
         setLoading("true");
         const body = {
             name: title,
-            days: chosenDays
-        }
+            days: chosenDays,
+        };
         if (chosenDays.length === 0) {
-            alert('Selecione ao menos um dia.');
+            alert("Selecione ao menos um dia.");
             setLoading("false");
         } else if (title === "") {
-            alert('Escolha o nome do habito');
+            alert("Escolha o nome do habito");
             setLoading("false");
         } else {
             createHabit(body)
@@ -44,7 +44,7 @@ export default function NewHabit({ add, setAdd }) {
             <div></div>
             <div>
                 <input
-                    placeholder="nome do hábito"
+                    placeholder='nome do hábito'
                     value={title}
                     onChange={(e) => {
                         setTitle(e.target.value);
@@ -53,19 +53,24 @@ export default function NewHabit({ add, setAdd }) {
                 <WeekDays>
                     {days.map((item, index) => {
                         return (
-                            <Day
-                                key={index}
-                                index={index}
-                            >{item}
-                            </Day>)
+                            <Day key={index} index={index}>
+                                {item}
+                            </Day>
+                        );
                     })}
                 </WeekDays>
             </div>
             <Choice>
-                <h2 onClick={() => {
-                    setAdd(false);
-                }}>Cancelar</h2>
-                <button onClick={submit}><ButtonContent loading={loading} text="Salvar" /></button>
+                <h2
+                    onClick={() => {
+                        setAdd(false);
+                    }}
+                >
+                    Cancelar
+                </h2>
+                <button onClick={submit}>
+                    <ButtonContent loading={loading} text='Salvar' />
+                </button>
             </Choice>
         </Wrapper>
     );
@@ -76,14 +81,14 @@ const Choice = styled.div`
     justify-content: flex-end;
     align-items: center;
 
-    h2{
+    h2 {
         font-family: Lexend Deca;
         color: var(--light-blue);
         font-size: 15.98px;
         margin-right: 23px;
         cursor: pointer;
     }
-    button{
+    button {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -94,10 +99,9 @@ const Choice = styled.div`
         width: 84px;
         cursor: pointer;
     }
-    p{
-        color: white; 
+    p {
+        color: white;
         font-size: 15.98px;
-
     }
 `;
 
@@ -121,9 +125,9 @@ const Wrapper = styled.div`
 
     ${(props) => {
         if (props.add) {
-            return `opacity: 1; height: 180px;  padding: 18px 17px 15px;`
+            return `opacity: 1; height: 180px;  padding: 18px 17px 15px;`;
         } else {
-            return ` opacity: 0; height: 0px; padding: 0px; visibility: hidden;`
+            return ` opacity: 0; height: 0px; padding: 0px; visibility: hidden;`;
         }
     }}
     ${(props) => {
@@ -139,7 +143,7 @@ const Wrapper = styled.div`
         height: 100%;
         background-color: rgba(255, 255, 255, 0.5);
     }
-    `
+    `;
         } else {
             return ` input{
                 background-color: white;
@@ -147,17 +151,17 @@ const Wrapper = styled.div`
     & > :first-child{
         display:none;
     }
-    `
+    `;
         }
     }}
-    input{
+    input {
         box-sizing: border-box;
-        padding: 9px  0 11px 11px ;
+        padding: 9px 0 11px 11px;
         border: 1px solid var(--border-color);
         border-radius: 5px;
         width: 100%;
-    }  
-    & ::placeholder{
+    }
+    & ::placeholder {
         color: var(--light-text);
         font-size: 19px;
     }

@@ -15,7 +15,7 @@ export default function Delete({ habitId }) {
                 .catch((res) => {
                     SetConfirm(false);
                     alert(res.response.data.message);
-                })
+                });
         }
     }, [confirm]);
 
@@ -25,7 +25,8 @@ export default function Delete({ habitId }) {
                 onClick={() => {
                     SetConfirm(window.confirm("Quer deletar o hábito?"));
                 }}
-                name="trash-outline"></ion-icon>
+                name='trash-outline'
+            ></ion-icon>
         </>
-    )
+    );
 }

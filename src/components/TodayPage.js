@@ -14,13 +14,19 @@ export default function TodayPage() {
     const { percentage } = useContext(UserContext);
 
     dayjs.extend(updateLocale);
-    dayjs.updateLocale('pt-br', {
+    dayjs.updateLocale("pt-br", {
         weekdays: [
-            "Domingo", "Segunda", "terça", "Quarta", "Quinta", "Sexta", "Sabado"
-        ]
+            "Domingo",
+            "Segunda",
+            "terça",
+            "Quarta",
+            "Quinta",
+            "Sexta",
+            "Sabado",
+        ],
     });
-    const now = dayjs().locale('pt-br').format("dddd", "DD/MM");
-    let month = (dayjs().month()) + 1;
+    const now = dayjs().locale("pt-br").format("dddd", "DD/MM");
+    let month = dayjs().month() + 1;
     let monthDay = dayjs().date();
     if (monthDay < 10) {
         monthDay = `0${monthDay}`;
@@ -45,19 +51,23 @@ export default function TodayPage() {
                 <h1>
                     {now}, {monthDay}/{month}
                 </h1>
-                {concluded === 0 ?
-                    <p>Nenhum hábito concluído ainda</p> :
-                    <h6>{percentage}% dos hábitos concluídos</h6>}
+                {concluded === 0 ? (
+                    <p>Nenhum hábito concluído ainda</p>
+                ) : (
+                    <h6>{percentage}% dos hábitos concluídos</h6>
+                )}
             </div>
             {today.map((item) => {
-                return <TodayHabit
-                    key={item.id}
-                    Id={item.id}
-                    title={item.name}
-                    done={item.done}
-                    sequence={item.currentSequence}
-                    record={item.highestSequence}
-                />
+                return (
+                    <TodayHabit
+                        key={item.id}
+                        Id={item.id}
+                        title={item.name}
+                        done={item.done}
+                        sequence={item.currentSequence}
+                        record={item.highestSequence}
+                    />
+                );
             })}
         </Wrapper>
     );
@@ -66,17 +76,17 @@ export default function TodayPage() {
 const Wrapper = styled.div`
     margin: 100px 5vw;
 
-    h1{
+    h1 {
         font-size: 22.98px;
         color: var(--heavy-blue);
     }
-    p{
-        color: #BABABA;
+    p {
+        color: #bababa;
         font-size: 17.98px;
         margin-bottom: 28px;
     }
-    h6{
-        color: #8FC549;
+    h6 {
+        color: #8fc549;
         font-size: 17.98px;
         margin-bottom: 28px;
     }

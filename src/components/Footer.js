@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
-import 'react-circular-progressbar/dist/styles.css';
+import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
+import "react-circular-progressbar/dist/styles.css";
 import UserContext from "../contexts/UserContext";
 import { useContext, useEffect, useState } from "react";
 import { todayHabits } from "../services/trackit";
@@ -14,11 +14,11 @@ export default function Footer() {
     const totalHabits = today.length;
     const percent = parseInt((concluded / totalHabits) * 100);
 
-    let marks = today.filter(item => item.done);
+    let marks = today.filter((item) => item.done);
     useEffect(() => {
         setConcluded(marks.length);
         setPercentage(percent);
-    }, [marks])
+    }, [marks]);
 
     useEffect(() => {
         todayHabits()
@@ -28,25 +28,28 @@ export default function Footer() {
             .catch((res) => {
                 alert(res.response.data.message);
             });
-
     }, [submits]);
 
     return (
         <Wrapper>
-            <Link to="/habitos">Hábitos</Link>
-            <Link to="/hoje">
+            <Link to='/habitos'>Hábitos</Link>
+            <Link to='/hoje'>
                 <Progressbar>
-                    <CircularProgressbar styles={buildStyles({
-                        pathColor: `rgb(255, 255, 255)`,
-                        textColor: "#ffffff",
-                        trailColor: 'transparent',
-                        textSize: '22px'
-                    })} value={percentage} text={`Hoje`} />
+                    <CircularProgressbar
+                        styles={buildStyles({
+                            pathColor: `rgb(255, 255, 255)`,
+                            textColor: "#ffffff",
+                            trailColor: "transparent",
+                            textSize: "22px",
+                        })}
+                        value={percentage}
+                        text={`Hoje`}
+                    />
                 </Progressbar>
             </Link>
-            <Link to="/historico">Histórico</Link>
+            <Link to='/historico'>Histórico</Link>
         </Wrapper>
-    )
+    );
 }
 
 const Wrapper = styled.div`
@@ -61,8 +64,8 @@ const Wrapper = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    
-    a{
+
+    a {
         text-decoration: none;
         color: var(--light-blue);
         font-size: 18px;
@@ -70,11 +73,11 @@ const Wrapper = styled.div`
 `;
 
 const Progressbar = styled.div`
-transform: translateY(-20px);
+    transform: translateY(-20px);
     height: 91px;
     width: 91px;
     padding: 6px;
     box-sizing: border-box;
     background-color: var(--light-blue);
-    border-radius: 50%;   
+    border-radius: 50%;
 `;
